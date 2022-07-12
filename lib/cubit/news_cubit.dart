@@ -35,6 +35,8 @@ class NewsCubit extends Cubit<NewsState> {
   ];
 
   List<dynamic> businessNews = [];
+  List<dynamic> sportsNews = [];
+  List<dynamic> scienceNews = [];
 
   void changeBottomNav(int index) {
     currentIndex = index;
@@ -48,12 +50,37 @@ class NewsCubit extends Cubit<NewsState> {
     _webServices.getCategoryNews('business').then(
       (value) {
         businessNews = value['articles'];
-        print(value['articles'][0]['title']);
         emit(BusinessNewsLoadedState());
       },
     ).catchError((error) {
       print(error.toString());
       emit(BusinessNewsErrorState(error.toString()));
+    });
+  }
+
+  void getSportsNews() {
+    emit(LoadingSportsNewsState());
+    _webServices.getCategoryNews('sports').then(
+      (value) {
+        businessNews = value['articles'];
+        emit(SportsNewsLoadedState());
+      },
+    ).catchError((error) {
+      print(error.toString());
+      emit(SportsNewsErrorState(error.toString()));
+    });
+  }
+
+  void getScienceNews() {
+    emit(LoadingScienceNewsState());
+    _webServices.getCategoryNews('science').then(
+      (value) {
+        businessNews = value['articles'];
+        emit(ScienceNewsLoadedState());
+      },
+    ).catchError((error) {
+      print(error.toString());
+      emit(ScienceNewsErrorState(error.toString()));
     });
   }
 }

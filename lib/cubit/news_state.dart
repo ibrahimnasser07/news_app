@@ -16,8 +16,20 @@ class BusinessNewsErrorState extends NewsState {
   BusinessNewsErrorState(this.error);
 }
 
-class GetSportsNewsState extends NewsState {}
+class LoadingSportsNewsState extends NewsState {}
 
-class GetScienceNewsState extends NewsState {}
+class SportsNewsLoadedState extends NewsState {}
 
+class SportsNewsErrorState extends NewsState {
+  final String error;
+  SportsNewsErrorState(this.error);
+}
 
+class LoadingScienceNewsState extends NewsState {}
+
+class ScienceNewsLoadedState extends NewsState {}
+
+class ScienceNewsErrorState extends NewsState {
+  final String error;
+  ScienceNewsErrorState(this.error);
+}
