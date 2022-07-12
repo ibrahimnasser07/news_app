@@ -7,6 +7,13 @@ class NewsInitial extends NewsState {}
 
 class ChangeBottomNavBarState extends NewsState {}
 
+
+class GetBusinessNewsState extends NewsState {}
+
+class GetScienceNewsState extends NewsState {}
+
+class GetSportsNewsState extends NewsState {}
+
 class LoadingBusinessNewsState extends NewsState {}
 
 class BusinessNewsLoadedState extends NewsState {}

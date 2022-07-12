@@ -41,46 +41,64 @@ class NewsCubit extends Cubit<NewsState> {
   void changeBottomNav(int index) {
     currentIndex = index;
     emit(ChangeBottomNavBarState());
+    if (index == 1) {
+      getSportsNews();
+    }
+    if (index == 2) {
+      getScienceNews();
+    }
   }
 
   final NewsWebServices _webServices = NewsWebServices();
 
   void getBusinessNews() {
-    emit(LoadingBusinessNewsState());
-    _webServices.getCategoryNews('business').then(
-      (value) {
-        businessNews = value['articles'];
-        emit(BusinessNewsLoadedState());
-      },
-    ).catchError((error) {
-      print(error.toString());
-      emit(BusinessNewsErrorState(error.toString()));
-    });
+    if (businessNews.isEmpty) {
+      emit(LoadingBusinessNewsState());
+      _webServices.getCategoryNews('business').then(
+        (value) {
+          businessNews = value['articles'];
+          emit(BusinessNewsLoadedState());
+        },
+      ).catchError((error) {
+        print(error.toString());
+        emit(BusinessNewsErrorState(error.toString()));
+      });
+    } else {
+      emit(BusinessNewsLoadedState());
+    }
   }
 
   void getSportsNews() {
-    emit(LoadingSportsNewsState());
-    _webServices.getCategoryNews('sports').then(
-      (value) {
-        businessNews = value['articles'];
-        emit(SportsNewsLoadedState());
-      },
-    ).catchError((error) {
-      print(error.toString());
-      emit(SportsNewsErrorState(error.toString()));
-    });
+    if (sportsNews.isEmpty) {
+      emit(LoadingSportsNewsState());
+      _webServices.getCategoryNews('sports').then(
+        (value) {
+          sportsNews = value['articles'];
+          emit(SportsNewsLoadedState());
+        },
+      ).catchError((error) {
+        print(error.toString());
+        emit(SportsNewsErrorState(error.toString()));
+      });
+    } else {
+      emit(SportsNewsLoadedState());
+    }
   }
 
   void getScienceNews() {
-    emit(LoadingScienceNewsState());
-    _webServices.getCategoryNews('science').then(
-      (value) {
-        businessNews = value['articles'];
-        emit(ScienceNewsLoadedState());
-      },
-    ).catchError((error) {
-      print(error.toString());
-      emit(ScienceNewsErrorState(error.toString()));
-    });
+    if (scienceNews.isEmpty) {
+      emit(LoadingScienceNewsState());
+      _webServices.getCategoryNews('science').then(
+        (value) {
+          scienceNews = value['articles'];
+          emit(ScienceNewsLoadedState());
+        },
+      ).catchError((error) {
+        print(error.toString());
+        emit(ScienceNewsErrorState(error.toString()));
+      });
+    } else {
+      emit(ScienceNewsLoadedState());
+    }
   }
 }

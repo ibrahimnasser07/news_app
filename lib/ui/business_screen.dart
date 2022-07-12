@@ -1,9 +1,9 @@
-import 'dart:convert';
-
-import 'package:conditional_builder/conditional_builder.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/constants/constants.dart';
 import 'package:news_app/cubit/news_cubit.dart';
+import 'package:news_app/my_widgets/article.dart';
 
 class BusinessScreen extends StatelessWidget {
   const BusinessScreen({Key? key}) : super(key: key);
@@ -19,13 +19,21 @@ class BusinessScreen extends StatelessWidget {
           builder: (context) {
             return ListView.separated(
               physics: const BouncingScrollPhysics(),
-              //TODO: Continue here..
-              itemBuilder: (context, index) {return const SizedBox();},
-              separatorBuilder: (context,index) => const Divider(),
+              itemBuilder: (context, index) {
+                return Article(
+                  image: cubit.businessNews[index]['urlToImage'] ??
+                      noImagePlaceholder,
+                  url: cubit.businessNews[index]['url'],
+                  title: cubit.businessNews[index]['title'],
+                  date: cubit.businessNews[index]['publishedAt'],
+                );
+              },
+              separatorBuilder: (context, index) => const Divider(),
               itemCount: cubit.businessNews.length,
             );
           },
-          fallback: (context) => const CircularProgressIndicator(),
+          fallback: (context) =>
+              const Center(child: CircularProgressIndicator()),
         );
       },
     );
