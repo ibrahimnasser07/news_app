@@ -19,14 +19,25 @@ class NewsCubit extends Cubit<NewsState> {
 
   int currentIndex = 0;
 
+  ThemeMode myTheme = ThemeMode.light;
+
   List<BottomNavigationBarItem> items = const [
-    BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'Business'),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.newspaper),
+      label: 'Business',
+    ),
     BottomNavigationBarItem(
       icon: Icon(Icons.sports),
       label: 'Sports',
     ),
-    BottomNavigationBarItem(icon: Icon(Icons.science), label: 'Science'),
-    BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.science),
+      label: 'Science',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.settings),
+      label: 'Settings',
+    ),
   ];
 
   List<Widget> screens = const [
@@ -107,11 +118,19 @@ class NewsCubit extends Cubit<NewsState> {
   String urlToImage(String? image) {
     if (image == null) {
       return noImagePlaceholder;
-    } else if(image.startsWith('https://www.aljazeera')){
+    } else if (image.startsWith('https://www.aljazeera')) {
       return noImagePlaceholder;
     } else {
       return image;
     }
   }
 
+  void switchThemeMode(){
+    if (myTheme == ThemeMode.light) {
+      myTheme = ThemeMode.dark;
+    } else {
+      myTheme = ThemeMode.light;
+    }
+    emit(SwitchThemeModeState());
+  }
 }

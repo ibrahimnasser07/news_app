@@ -16,7 +16,7 @@ class Article extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(width: 10),
+        const SizedBox(width: 15),
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: myImage(image),
@@ -34,27 +34,19 @@ class Article extends StatelessWidget {
                   title,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontSize: 18,
-                  ),
+                  style: Theme.of(context).textTheme.bodyText1,
                 ),
                 Text(
                   date,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.normal,
-                    color: Colors.black45,
-                    fontSize: 12,
-                  ),
+                  style: Theme.of(context).textTheme.subtitle1,
                 ),
               ],
             ),
           ),
         ),
-        const SizedBox(width: 10),
+        const SizedBox(width: 15),
       ],
     );
   }

@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/cubit/news_cubit.dart';
-import 'package:news_app/web_services/web_services.dart';
 
 class FrontScreen extends StatelessWidget {
   const FrontScreen({Key? key}) : super(key: key);
@@ -22,6 +21,10 @@ class FrontScreen extends StatelessWidget {
                 onPressed: () {},
                 icon: const Icon(Icons.search),
               ),
+              IconButton(
+                onPressed: () => cubit.switchThemeMode(),
+                icon: const Icon(Icons.brightness_medium_outlined),
+              ),
             ],
           ),
           body: cubit.screens[cubit.currentIndex],
@@ -30,14 +33,6 @@ class FrontScreen extends StatelessWidget {
             currentIndex: cubit.currentIndex,
             onTap: (index) => cubit.changeBottomNav(index),
             showUnselectedLabels: true,
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              NewsWebServices()
-                  .getNewsData({'country': 'eg', 'category': 'sports'}).then(
-                      (value) => print(value['articles'][0]['title']));
-            },
-            child: const Icon(Icons.add),
           ),
         );
       },

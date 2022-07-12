@@ -36,7 +36,10 @@ class LoadingScienceNewsState extends NewsState {}
 
 class ScienceNewsLoadedState extends NewsState {}
 
+
 class ScienceNewsErrorState extends NewsState {
   final String error;
   ScienceNewsErrorState(this.error);
 }
+
+class SwitchThemeModeState extends NewsState {}
