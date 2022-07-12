@@ -2,29 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:news_app/cache_manager/shared_preferences.dart';
 import 'package:news_app/cubit/news_cubit.dart';
 import 'package:news_app/ui/front_screen.dart';
 
 import 'my_bloc_observer.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await CacheManager.init();
+  bool isDark = CacheManager.getData('isDark')!;
   BlocOverrides.runZoned(
     () {
-      runApp(const MyApp());
+      runApp(MyApp(isDark: isDark));
     },
     blocObserver: MyBlocObserver(),
   );
-  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+  const MyApp({Key? key, required this.isDark}) : super(key: key);
+  final bool isDark;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NewsCubit()..getBusinessNews(),
+      create: (context) => NewsCubit()..getBusinessNews()..switchThemeMode(fromShared: isDark),
       child: BlocBuilder<NewsCubit, NewsState>(
         builder: (context, state) {
           NewsCubit cubit = NewsCubit.get(context);
@@ -32,6 +35,11 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'News App',
             darkTheme: ThemeData(
+              dividerColor: HexColor('816797'),
+              dividerTheme: const DividerThemeData(
+                indent: 15,
+                endIndent: 15,
+              ),
               scaffoldBackgroundColor: HexColor('1B2430'),
               appBarTheme: AppBarTheme(
                 titleSpacing: 15,
@@ -71,6 +79,10 @@ class MyApp extends StatelessWidget {
             ),
             theme: ThemeData(
               primarySwatch: Colors.deepOrange,
+              dividerTheme: const DividerThemeData(
+                indent: 15,
+                endIndent: 15,
+              ),
               bottomNavigationBarTheme: const BottomNavigationBarThemeData(
                 selectedItemColor: Colors.deepOrange,
                 unselectedItemColor: Colors.black45,
@@ -104,7 +116,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
-            themeMode: cubit.myTheme,
+            themeMode: cubit.isDark ? ThemeMode.dark : ThemeMode.light,
             home: const FrontScreen(),
           );
         },
