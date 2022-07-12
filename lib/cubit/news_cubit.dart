@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/cache_manager/shared_preferences.dart';
 import 'package:news_app/ui/business_screen.dart';
 import 'package:news_app/ui/science_screen.dart';
 import 'package:news_app/ui/settings.dart';
@@ -19,7 +20,7 @@ class NewsCubit extends Cubit<NewsState> {
 
   int currentIndex = 0;
 
-  ThemeMode myTheme = ThemeMode.light;
+  bool isDark = false;
 
   List<BottomNavigationBarItem> items = const [
     BottomNavigationBarItem(
@@ -125,12 +126,14 @@ class NewsCubit extends Cubit<NewsState> {
     }
   }
 
-  void switchThemeMode(){
-    if (myTheme == ThemeMode.light) {
-      myTheme = ThemeMode.dark;
+  void switchThemeMode({bool? fromShared}) {
+    if (fromShared != null) {
+      isDark = fromShared;
     } else {
-      myTheme = ThemeMode.light;
+      isDark = !isDark;
+      CacheManager.setData('isDark', isDark).then(
+        (value) => emit(SwitchThemeModeState()),
+      );
     }
-    emit(SwitchThemeModeState());
   }
 }
