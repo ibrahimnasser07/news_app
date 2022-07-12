@@ -119,7 +119,7 @@ class NewsCubit extends Cubit<NewsState> {
   String urlToImage(String? image) {
     if (image == null) {
       return noImagePlaceholder;
-    } else if (image.startsWith('https://www.aljazeera')) {
+    } else if (image.startsWith('https://www.aljazeera') || image.startsWith('https://www.alquds')) {
       return noImagePlaceholder;
     } else {
       return image;
