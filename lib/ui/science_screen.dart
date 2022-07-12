@@ -1,7 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/constants/constants.dart';
 import 'package:news_app/cubit/news_cubit.dart';
 import 'package:news_app/my_widgets/article.dart';
 
@@ -20,8 +19,7 @@ class ScienceScreen extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return Article(
-                  image: cubit.scienceNews[index]['urlToImage'] ??
-                      noImagePlaceholder,
+                  image: cubit.urlToImage(cubit.scienceNews[index]['urlToImage']),
                   url: cubit.scienceNews[index]['url'],
                   title: cubit.scienceNews[index]['title'],
                   date: cubit.scienceNews[index]['publishedAt'],

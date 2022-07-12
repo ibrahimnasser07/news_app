@@ -8,6 +8,8 @@ import 'package:news_app/ui/settings.dart';
 import 'package:news_app/ui/sports_screen.dart';
 import 'package:news_app/web_services/web_services.dart';
 
+import '../constants/constants.dart';
+
 part 'news_state.dart';
 
 class NewsCubit extends Cubit<NewsState> {
@@ -101,4 +103,15 @@ class NewsCubit extends Cubit<NewsState> {
       emit(ScienceNewsLoadedState());
     }
   }
+
+  String urlToImage(String? image) {
+    if (image == null) {
+      return noImagePlaceholder;
+    } else if(image.startsWith('https://www.aljazeera')){
+      return noImagePlaceholder;
+    } else {
+      return image;
+    }
+  }
+
 }
