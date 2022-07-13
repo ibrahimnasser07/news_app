@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/constants/constants.dart';
 
@@ -19,7 +20,14 @@ class Article extends StatelessWidget {
         const SizedBox(width: 15),
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
-          child: myImage(image),
+          child: CachedNetworkImage(
+            imageUrl: image,
+            height: 120,
+            width: 120,
+            fit: BoxFit.cover,
+            errorWidget: (c, e, s) =>
+                CachedNetworkImage(imageUrl: noImagePlaceholder),
+          ),
         ),
         const SizedBox(width: 10),
         Expanded(
@@ -48,24 +56,6 @@ class Article extends StatelessWidget {
         ),
         const SizedBox(width: 15),
       ],
-    );
-  }
-}
-
-Widget myImage(image) {
-  try {
-    return Image.network(
-      image,
-      height: 120,
-      width: 120,
-      fit: BoxFit.cover,
-    );
-  } catch (e) {
-    return Image.network(
-      noImagePlaceholder,
-      height: 120,
-      width: 120,
-      fit: BoxFit.cover,
     );
   }
 }

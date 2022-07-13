@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/cache_manager/shared_preferences.dart';
 import 'package:news_app/ui/business_screen.dart';
 import 'package:news_app/ui/science_screen.dart';
-import 'package:news_app/ui/settings.dart';
 import 'package:news_app/ui/sports_screen.dart';
 import 'package:news_app/web_services/web_services.dart';
 
@@ -35,22 +34,18 @@ class NewsCubit extends Cubit<NewsState> {
       icon: Icon(Icons.science),
       label: 'Science',
     ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.settings),
-      label: 'Settings',
-    ),
   ];
 
   List<Widget> screens = const [
     BusinessScreen(),
     SportsScreen(),
     ScienceScreen(),
-    SettingsScreen(),
   ];
 
   List<dynamic> businessNews = [];
   List<dynamic> sportsNews = [];
   List<dynamic> scienceNews = [];
+  List<dynamic> searchNews = [];
 
   void changeBottomNav(int index) {
     currentIndex = index;
@@ -64,6 +59,21 @@ class NewsCubit extends Cubit<NewsState> {
   }
 
   final NewsWebServices _webServices = NewsWebServices();
+
+  void getSearchNews(String? search) {
+    if (search != null) {
+      emit(LoadingSearchNewsState());
+      _webServices.getSearchNews(search).then(
+        (value) {
+          searchNews = value['articles'];
+          emit(SearchNewsLoadedState());
+        },
+      ).catchError((error) {
+        print(error.toString());
+        emit(SearchNewsErrorState(error.toString()));
+      });
+    }
+  }
 
   void getBusinessNews() {
     if (businessNews.isEmpty) {

@@ -42,4 +42,13 @@ class ScienceNewsErrorState extends NewsState {
   ScienceNewsErrorState(this.error);
 }
 
+class LoadingSearchNewsState extends NewsState {}
+
+class SearchNewsLoadedState extends NewsState {}
+
+class SearchNewsErrorState extends NewsState {
+  final String error;
+  SearchNewsErrorState(this.error);
+}
+
 class SwitchThemeModeState extends NewsState {}

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/cubit/news_cubit.dart';
+import 'package:news_app/ui/search_screen.dart';
 
 class FrontScreen extends StatelessWidget {
   const FrontScreen({Key? key}) : super(key: key);
@@ -18,7 +19,11 @@ class FrontScreen extends StatelessWidget {
             title: const Text('News App'),
             actions: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  cubit.searchNews = [];
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => const SearchScreen()));
+                },
                 icon: const Icon(Icons.search),
               ),
               IconButton(

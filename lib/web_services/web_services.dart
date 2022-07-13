@@ -46,4 +46,20 @@ class NewsWebServices {
       return {};
     }
   }
+
+  Future<Map<String, dynamic>> getSearchNews(String? search) async {
+    try {
+      Response response = await dio.get(
+        'everything',
+        queryParameters: {
+          'apiKey': apiKey,
+          'q': search,
+        },
+      );
+      return response.data as Map<String, dynamic>;
+    } catch (e) {
+      print('error is : ' + e.toString());
+      return {};
+    }
+  }
 }
