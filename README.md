@@ -1,16 +1,22 @@
-# news_app
+# News App
 
-A new Flutter project.
+Get the latest news from newsapi.org.
 
-## Getting Started
+## App Features
 
-This project is a starting point for a Flutter application.
+Filterd data based on category, live search, dark & light mode.
 
-A few resources to get you started if this is your first Flutter project:
+![light mode](https://drive.google.com/file/d/1sgonIW_EWqPPJKIXw6oRe0BIsPBKloOS/view?usp=sharing)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+This project is a clear implementation of how to work with the API, filter and search data.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+I've used these plugins to make this app:
+  - bloc
+  - cached_network_image
+  - conditional_builder_null_safety
+  - cupertino_icons
+  - dio
+  - flutter_bloc
+  - hexcolor
+  - shared_preferences
+  - webview_flutter
