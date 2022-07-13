@@ -6,7 +6,7 @@ Get the latest news from newsapi.org.
 
 Filtered data based on category, live search, dark & light mode.
 
-![light mode](/screenshots/darkmode.jpg)
+![light mode](/screenshots/darkmode.jpg | width=100)
 
 This project is a clear implementation of how to work with the API, filter and search data.
 
