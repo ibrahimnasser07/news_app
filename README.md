@@ -4,9 +4,9 @@ Get the latest news from newsapi.org.
 
 ## App Features
 
-Filterd data based on category, live search, dark & light mode.
+Filtered data based on category, live search, dark & light mode.
 
-![light mode](https://drive.google.com/file/d/1sgonIW_EWqPPJKIXw6oRe0BIsPBKloOS/view?usp=sharing)
+![light mode](/screenshots/darkmode.jpg)
 
 This project is a clear implementation of how to work with the API, filter and search data.
 
