@@ -7,7 +7,7 @@ Get the latest news from newsapi.org.
 Filtered data based on category, live search, dark & light mode.
 
 | Dark mode | Light Mode |
-| :---         |     :---:      |
+| :---:         |     :---:      |
 | <img src='/screenshots/darkmode.jpg' width=250>  | <img src='/screenshots/lightmode.jpg' width=250> |
 |  Arabic Search |  English Search |
 | <img src='/screenshots/search-arabic.jpg' width=250> | <img src='/screenshots/search-english.jpg' width=250> | <img src='/screenshots/tabs.jpg' width=150> |
