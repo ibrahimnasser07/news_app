@@ -16,7 +16,7 @@ Filtered data based on category, live search, dark & light mode.
 
 This project is a clear implementation of how to work with the API, filter and search data.
 
-I've used these plugins to make this app:
+I've used these packages to make this app:
   - bloc
   - cached_network_image
   - conditional_builder_null_safety
